@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 
 
 //rotas
-import routerhttp from './routes/http/web.router.js'
+import routerhttp from './routes/HTTP/web.router.js';
 
 
 const app = Express();
@@ -37,6 +37,7 @@ app.get('/login2', (req, res) => {
   res.status(200).render('dash/login.ejs', {layout : 'dash/layout/layout.ejs', perfil : {}});
 });
 
-app.listen(PORT || 5000, '0.0.0.0', () => {
+const PORT = process.env.PORT || 5000;//GCP configuração de porta
+app.listen(PORT, () => {
   console.log('\n Server está ativo -> http://localhost:${PORT} \n');
 });
