@@ -1,0 +1,98 @@
+<style>
+  .inline-svg {
+    display: inline;
+    vertical-align: super;
+}
+
+.inline-svg2 {
+  display: inline;
+  vertical-align: middle;
+  align-self: center;
+}
+</style>
+
+<body class="bg-gray-100 text-lg">
+<div class="flex h-screen overflow-hidden">
+
+  <%- include ('../dash/partials/sidebar.ejs') %>
+
+  <!-- Main content -->
+  <main class="flex-1 w-full overflow-x-hidden overflow-y-auto bg-gray-100">
+    <%- include ('../dash/partials/navbar.ejs') %>
+   
+    <div class="my-[10vh] mx-[30vw]">
+    <div class="animate__animated animate__fadeIn">
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden login-container w-[30vw] max-w-[560px]">
+          <div class="h-32">
+              <img src="img/bannerhero2.webp" alt="Imagem de Login" class="w-full h-full object-cover"> <!-- Imagem visível no topo -->
+          </div>
+          <div class="p-4">
+            <div class="flex justify-evenly mb-0 items-center">
+            <h2 class="text-2xl font-bold text-center mb-0  mr-0 text-gray-600">Bem-vindo ao</h2>
+            <img src="img/logo_sm_green.png" alt="Odontocare" class="w-40">
+            </div>
+            <p class="text-center mb-6 text-gray-400">Por favor, faça seu login para continuar</p>
+              <form action="/login" method="POST">
+                  <div class="mb-4">
+                      <label for="email" class="block text-gray-600">E-mail</label>
+                      <input type="email" id="email" name="email" required class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div class="mb-6">
+                      <label for="password" class="block text-gray-600">Senha</label>
+                      <input type="password" id="password" name="password" required class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <button type="submit" class="w-full bg-blue-400 text-white p-2 rounded hover:bg-blue-600 transition duration-200">Entrar</button>
+              </form>
+              <div class="mt-4 text-center pe-4">
+                  <a href="#" class="text-blue-500 hover:underline">Esqueceu sua senha?</a>
+              </div>
+              <hr class="my-4">
+              <div class="mt-2 text-center text-gray-500">
+                  Ou volte para<a href="#" class="text-blue-500 hover:underline" style="white-space: nowrap;"> Página Inicial
+                    <svg class="inline-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                    </svg>
+                </a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+
+
+<script>
+const popoverButton = document.getElementById('popoverButton');
+const popoverContent = document.getElementById('popoverContent');
+
+popoverButton.addEventListener('mouseover', () => {
+    popoverContent.classList.remove('hidden');
+});
+
+popoverButton.addEventListener('mouseout', () => {
+    popoverContent.classList.add('hidden');
+});
+</script>
+
+<script>
+document.querySelectorAll('[data-id-cliente]').forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+    const idCliente = this.getAttribute('data-id-cliente');
+    fetch(`/admin/clientes/${idCliente}/delete`, {
+      method: 'DELETE'
+    }).then(response => {
+      if (response.ok) {
+        console.log('Recurso deletado com sucesso');
+        // Aqui você pode adicionar código para remover o item da interface, se necessário
+      } else {
+        console.log('Falha ao deletar o recurso');
+      }
+    }).catch(error => {
+      console.error('Erro:', error);
+    });
+  });
+});
+</script>

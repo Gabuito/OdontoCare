@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif !important;
+}
+
+
+@keyframes fade-out {
+  from{
+    opacity: 1;
+    scale: 1;
+  }
+  to{
+    opacity: 0;
+    scale: 3;
+  }
+}
+
+@keyframes fade-left {
+  from{
+    opacity: 0;
+    transform: translateX(-100%);
+    scale: 0.5;
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+    scale: 1;
+  }
+  
+}
+
+@media (max-width: 768px){
+  .plan{
+    animation: none;
+  }
+}
+
+.plan{
+  /* animation: fade-in 1s ease-in;
+  animation-timeline: view(105vh -200vh);
+  animation-delay: 2s; */
+}
+
+.inter{
+  font-family: 'Inter', sans-serif !important;
+}
+
+.hero-bg {
+  background-image: url('../img/hero1.png'); /* Substitua pela URL da imagem desejada */
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 768px) {
+  nav a {
+    display: none !important;
+  }
+
+  .bg-hero{
+    object-fit: fill;
+  }
+  .bg-content{
+    h1{
+      font-size: 1.5rem !important;
+    }
+  }
+}
+
+.text-stroke-3 {
+  text-shadow: -0.5px -0.5px 0 rgba(0, 0, 0, 0.493), 0.5px -0.5px 0 #00000080, -1px 1px 0 rgba(0, 0, 0, 0.493), 1px 1px 0 rgba(0, 0, 0, 0.50);
+}
+
+.blur-effect{
+  backdrop-filter: blur(2px);
+  text-overflow: ellipsis;
+}
+
+.mr-vw-65 {
+  margin-right: 95vw;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); 
+  z-index: 1;
+}
+
+.inline-svg {
+  display: inline;
+}
+
+.nav-logo{
+  max-width: 25vh; 
+  filter: drop-shadow(1px 1px 3px #00000080);
+}
+
+.hero-content{
+  z-index: 2;
+  line-height: 1.2;
+}
+
+mark {
+  background: linear-gradient(135deg, #107169 10%, #043028 80%);
+  color: white !important;
+  padding: 0 4px;
+  border-radius: 0.9em 0.1em;
+  opacity: 0.9;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  position: relative;
+}
+
+mark::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #107169;
+  opacity: 0.8;
+  border-radius: 2px;
+  z-index: -1;
+  transform: rotate(-4deg);
+  border-radius: 0.3em;
+}
+
+@keyframes slides {
+  from {
+      transform: translateX(0);
+  }
+  to {
+      transform: translateX(-100%);
+  }
+}
+
+.logos {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  content: '';
+  width: 250px;
+  height: 100%;
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0), rgb(255, 255, 255));
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0), rgb(255, 255, 255));
+}
+
+.logos-container {
+  display: flex;
+  width: 100%;
+  gap: 60px;
+}
+
+.logo_items {
+  display: flex;
+  align-items: center;
+  animation: 15s slides infinite linear;
+  flex-shrink: 0;
+  gap: 60px; /* Espaçamento fixo entre as imagens */
+}
+
+.logos:hover .logo_items {
+  animation-play-state: paused;
+}
+
+.logo_items img {
+  height: 40px; /* Altura fixa para todas as imagens */
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .logo_items img {
+      height: 60px;
+  }
+  
+  .logo_items {
+      gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo_items img {
+      height: 40px;
+  }
+  
+  .logo_items {
+      gap: 25px;
+  }
+}
+
+.logo_itemsreverse {
+  display: inline-flex;
+  animation: 35s slides-reverse infinite linear;
+}
+
+.logo_itemsreverse img{
+  height: 100px;
+  display: none;
+}
+
+@keyframes fade-in {
+  
+  from {
+    transform: translateX(-100%);
+    
+    opacity: 0.5;
+  }
+}
+
+.team_img{
+  transform: translateX(0%);
+  opacity: 1;
+  animation: fade-in linear forwards;
+  animation-timeline: view() !important;
+  animation-range: entry -100px !important;
+}
+
+@keyframes change-color {
+ 
+
+  to {
+    background-color: #000000b9;
+  }
+}
+
+
+
+.animate__animated.animate__wobble.animate__infinite {
+  --animate-delay: 3s !important;
+}

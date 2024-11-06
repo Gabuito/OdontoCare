@@ -1,0 +1,51 @@
+```mermaid
+graph TD
+    A[projeto-root] --> B[src]
+    A --> C[public]
+    A --> D[tests]
+    A --> E[docs]
+    A --> F[node_modules]
+    A --> G[package.json]
+    A --> H[.env]
+    A --> I[.gitignore]
+    A --> J[README.md]
+
+    B --> K[controllers]
+    B --> L[models]
+    B --> M[views]
+    B --> N[routes]
+    B --> O[middlewares]
+    B --> P[utils]
+    B --> Q[config]
+    B --> R[app.js]
+    B --> S[server.js]
+
+    C --> T[css]
+    C --> U[images]
+    C --> V[js]
+
+    D --> W[unit]
+    D --> X[integration]
+    D --> Y[e2e]
+
+    K --> K1[authController.js]
+    K --> K2[dashboardController.js]
+
+    L --> L1[userModel.js]
+
+    M --> M1[login.ejs]
+    M --> M2[dashboard.ejs]
+
+    N --> N1[authRoutes.js]
+    N --> N2[dashboardRoutes.js]
+    
+
+    O --> O1[authMiddleware.js]
+    O --> O2[errorMiddleware.js]
+
+    P --> P1[logger.js]
+    P --> P2[database.js]
+
+    Q --> Q1[dbConfig.js]
+    Q --> Q2[expressConfig.js]
+```

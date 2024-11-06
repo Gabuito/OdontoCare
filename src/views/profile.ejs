@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Hero Banner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Customização para o Hero background */
+    .hero-bg {
+      background-image: url('./img/bannerH2.webp'); /* Substitua pela URL da imagem desejada */
+      background-size: cover;
+      background-position: center;
+    }
+
+    @media (max-width: 768px) {
+      nav a {
+        display: none !important;
+      }
+    }
+    .text-stroke-3 {
+      text-shadow: -0.5px -0.5px 0 rgba(0, 0, 0, 0.493), 0.5px -0.5px 0 #00000080, -1px 1px 0 rgba(0, 0, 0, 0.493), 1px 1px 0 rgba(0, 0, 0, 0.50);
+  }
+
+  .blur-effect{
+    backdrop-filter: blur(5px);
+    text-overflow: ellipsis;
+  }
+
+
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <!-- Navbar (overlay) -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#1717171e] bg-opacity-1 blur-effect">
+
+    <div class=" max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-4xl font-bold text-white">Logo</div>
+      <nav class="space-x-6">
+        <a href="#" class="text-white text-stroke-3 text-xl">Sobre</a>
+        <a href="#" class="text-white text-stroke-3 text-xl">Planos</a>
+        <a href="#" class="text-white text-stroke-3 text-xl">FAQ</a>
+        <a href="#" class="bg-purple-700 text-white text-xl px-4 py-2 rounded">Entrar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg h-screen flex items-center justify-evenly">
+    <div class="w-1/7"></div>
+      <div class="bg-[#1717171e] bg-opacity-1 p-8 text-left max-w-screen-sm w-6/7 ms-4 blur-effect rounded">
+      <h1 class="text-7xl py-2 font-bold bg-gradient-to-r from-white to-gray-300 text-transparent bg-clip-text drop-shadow-lg"">Seu sorriso em primeiro lugar.<br>Sempre.</h1>
+      
+      <p class="text-4xl text-white mt-4 drop-shadow-lg">
+        Afinal, seu sorriso é único e merece o melhor.
+      </p>
+      <button class=" text-2xl mt-6 bg-purple-700 text-white px-6 py-2 rounded">Veja os Planos</button>
+      <a class="text-2xl mt-6 text-sky-500 px-6 py-2 rounded text-stroke-3">Acesse sua conta</a>
+    </div>
+  </section>
+
+  <!-- Main Content (optional) -->
+  <main class="max-w-screen-xl mx-auto p-6">
+    <h2 class="text-3xl font-semibold text-center">Additional Content</h2>
+    <p class="text-center mt-4">
+      This is an example of additional content that would follow the hero section. You can place any other relevant information here.
+    </p>
+  </main>
+
+</body>
+</html>
+
+ 

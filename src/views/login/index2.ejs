@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar OdontoCare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+<body class="flex h-screen  bg-gray-100">
+    <!-- Imagem à esquerda ocupando exatamente 35vw -->
+    <div class="h-full w-[200px]:hidden w-1/2 overflow-hidden">
+      <img src="img/hero_banner.jpg" alt="Login illustration" class="h-full w-full object-cover transform transition duration-500 hover:scale-110">
+  </div>
+    <!-- Container de conteúdo -->
+    <div class="w-1/2 flex items-center justify-center p-8 bg-white">
+        <div class="w-full max-w-lg p-6">
+            <img class="object-left w-auto mb-4 mx-auto animate__animated animate__fadeIn" src="img/logo_sm_gray.png" alt="Logo">
+            <h1 class="text-3xl font-semibold text-gray-800 text-center mb-2 animate__animated animate__fadeInDown">Bem-vindo</h1>
+            <p class="text-gray-600 text-center mb-8 animate__animated animate__fadeIn">Faça login para continuar</p>
+            <p class="text-gray-700 text-center italic text-md">Não tem conta? <a class="text-blue-500 hover:underline"></a> </p>
+
+            <form class="space-y-4">
+                <div>
+                    <label for="username" class="block text-gray-700 font-medium">Usuário</label>
+                    <input id="username" type="email" class="w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer" placeholder="Digite seu usuário">                    
+                </div>
+                
+
+                <div>
+                    <label for="password" class="block text-gray-700 font-medium">Senha</label>
+                    <input id="password" type="password" class="w-full rounded border border-gray-300 bg-inherit p-3 shadow shadow-gray-100 mt-2 appearance-none outline-none text-neutral-800 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer" placeholder="Digite sua senha" required>
+                    
+                </div>
+                <div class="flex items-center justify-between ">
+                    <button type="submit" class="bg-blue-500 text-white px-28 py-3 my-6 rounded-lg hover:bg-blue-600 focus:outline-none animate__animated animate__pulse">Entrar</button>
+                    <a href="#" class="text-blue-500 hover:underline">Esqueceu sua senha?</a>
+                </div>
+
+              <hr>
+              <div class="items-center justify-center text-center">
+                <h3 class="text-center text-gray-600">Ou acesse o</h3>
+                <a class="text-center text-blue-500 hover:underline" href="#">Portal do Colaborador <svg class="inline align-super text-sm" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                  </svg></a>
+              </div>
+            </form>
+
+            
+        
+    </div>
+  
+</body>
+</html>

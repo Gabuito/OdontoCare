@@ -1,0 +1,12 @@
+<section id="brands" class="bg-slate-100 flex w-full h-screen items-center justify-center">
+  <div class="bg-white rounded-lg shadow-lg h-max lg:h-[75vh] container py-4 pb-0 flex flex-col">
+    <div class="flex-none">
+      <%- include ('../partials/scrollbrand') %>
+    </div>
+    <div class="flex-grow mt-16 w-full flex flex-col lg:flex-row gap-4 items-center justify-between h-fit mb-0">
+      <%- include ('../partials/cards/incrementalcard', {info: {to: 29, h1: "Parceiros", media:"pathership" }}) %>
+      <%- include ('../partials/cards/incrementalcard', {info: {to: 43, h1: "Especialidades",  media: "dentist"}}) %>
+      <%- include ('../partials/cards/incrementalcard', {info: {to: 103, h1: "Unidades", media: "clinical"}}) %>
+    </div>
+  </div>
+</section>

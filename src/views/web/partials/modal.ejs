@@ -1,0 +1,46 @@
+<style>
+  .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+  }
+  .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+  }
+  .modal-content {
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+  }
+  .modal-backdrop.active .modal-content {
+      transform: translateY(0);
+  }
+</style>
+
+
+<div id="planmodal" class="z-50 modal-backdrop fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+  <div class="modal-content bg-white p-6 rounded-lg shadow-xl container h-[90vh] overflow-y-auto pb-12">
+      <div class="flex justify-between items-center mb-4">
+          <h2 class="text-4xl font-bold text-gray-800"><mark class="px-4 py-3"><%= info.h2 %> </mark></h2>
+          <button id="fecharModal" class="text-gray-500 hover:text-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+          </button>
+      </div>
+      <div class="h-[60vh] flex flex-col gap-6 ">
+          <img src="img/plan/<%= info.img %>.webp" alt="" class="flex w-full h-[45vh] object-cover rounded-lg  object-[0px_-370px]">
+          <p class="text-gray-600 text-lg"><%= info.p %></p>
+          <h3 class="text-gray-600 font-semibold text-xl">Beneficios e Vantagens:</h3>
+          <ul class="flex flex-col">
+              <% info.list?.forEach(benefit => { %>
+                  <li class="inline-block text-gray-600 font-medium text-lg"><svg class="inline-block mb-1 mr-1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                  </svg><%= benefit %></li>
+              <% }) %>
+          </ul>
+      </div>
+  </div>
+</div>
+

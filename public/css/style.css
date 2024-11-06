@@ -1,0 +1,113 @@
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+
+nav{
+    padding-left: 10%;
+    padding-right: 10%;
+    z-index: 1000;
+    height: 64px;
+    background-color: #7190be;
+    color: #fff;
+    position: fixed;
+
+    a{
+        text-decoration: none;
+        color: #fff !important;
+    }
+
+    details summary.button {
+        overflow: hidden;
+        color:  black  !important;
+        background-color: #fff !important;
+        min-width: 92px;
+        max-width: 92px;
+
+        
+    }
+    
+    .card{
+        color: #000 !important;
+        width: 15vw;
+        min-width: 250px;
+        max-width: 10vw;
+
+        input{
+            width: 92% !important;
+        }
+
+        h5 a{
+            color: blue !important;
+        }
+        }
+}
+
+section{
+    height: 100vh;
+    width: 100vw;
+    min-height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    
+ 
+}
+
+
+
+section#services{
+    background: url("../src/img/service_banner.svg") no-repeat center center/cover;
+    color: #fff;
+    text-shadow: 0 0 .1px #fff, 0 0 .1px #fff, 0 0 .1px #fff;
+    height: 100%;
+    width: 100vw;
+    min-height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+    
+}
+
+
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(79,78,82,0.1) 31%, rgba(0, 0, 0, 0.781) 100%);
+    pointer-events: none; /* Permite clicar através do overlay */
+  }
+
+  .hero-banner{
+    position: absolute;
+    background: url(../src/img/hero_banner.jpg) no-repeat center center/cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+.service-container{
+    padding-top: 5vh;
+    h1{
+        font-weight: 400;
+}
+}
+
+.hero-content{
+    z-index: 100;
+    color: #fff;
+    --max-width: 90% p !important;
+
+    a{
+        text-decoration: none !important;
+        cursor: pointer !important;
+        color: #fff !important;
+        font-size: 1.7rem;
+
+    }
+}

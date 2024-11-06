@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - OdontoCare</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet"/>
+    <style>
+      .inline-svg {
+        display: inline;
+        vertical-align: super;
+    }
+        
+    </style>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden; /* Impede barras de rolagem */
+        background-color: #107169; /* Cor primária */
+      }
+      
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Fica atrás do conteúdo */
+      }
+      
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        animation: float infinite;
+      }
+      
+      
+      </style>
+
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+  <div class="background">
+  </div>
+
+<script>
+const background = document.querySelector('.background');
+const numCircles = 65; // Número de círculos
+
+for (let i = 0; i < numCircles; i++) {
+  const circle = document.createElement('div');
+  circle.classList.add('circle');
+
+  // Tamanho aleatório
+  const size = Math.random() * 90 + 20; // Entre 20px e 80px
+  circle.style.width = `${size}px`;
+  circle.style.height = `${size}px`;
+
+  // Posição aleatória
+  circle.style.left = `${Math.random() * 100}%`;
+  circle.style.top = `${Math.random() * 100}%`;
+
+ // Duração e atraso da animação aleatórios
+  const duration = Math.random() * 10 + 5; // Entre 5s e 15s
+  const delay = Math.random() * 5;  // Atraso de até 5s
+  circle.style.animationDuration = `${duration}s`;
+  circle.style.animationDelay = `${delay}s`;
+
+  background.appendChild(circle);
+}
+</script>
+
+
+<style>
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(20px, -70px);  /* Movimento mais sutil */
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+}
+</style>
+    <div class="relative w-96 animate__animated animate__fadeIn">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden login-container">
+            <div class="h-32">
+                <img src="img/bannerhero2.webp" alt="Imagem de Login" class="w-full h-full object-cover"> <!-- Imagem visível no topo -->
+            </div>
+            <div class="p-4">
+              <div class="flex justify-evenly mb-0 items-center">
+              <h2 class="text-2xl font-bold text-center mb-0  mr-0 text-gray-600">Bem-vindo ao</h2>
+              <img src="img/logo_sm_green.png" alt="Odontocare" class="w-40">
+              </div>
+              <p class="text-center mb-6 text-gray-400">Por favor, faça seu login para continuar</p>
+                <form action="/login" method="POST">
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-600">E-mail</label>
+                        <input type="email" id="email" name="email" required class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-600">Senha</label>
+                        <input type="password" id="password" name="password" required class="w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-400 text-white p-2 rounded hover:bg-blue-600 transition duration-200">Entrar</button>
+                </form>
+                <div class="mt-4 text-center pe-4">
+                    <a href="#" class="text-blue-500 hover:underline">Esqueceu sua senha?</a>
+                </div>
+                <hr class="my-4">
+                <div class="mt-2 text-center text-gray-500">
+                    Ou acesse <a href="#" class="text-blue-500 hover:underline" style="white-space: nowrap;">Portal do Colaborador
+                      <svg class="inline-svg" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
+                          <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+                      </svg>
+                  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<style>
+  .dynamic-mark {
+    display: inline-block;
+  }
+</style>
+
+<div class="w-full lg:w-1/3 h-full text-center items-center transition-all" style="background-image: url(img/info/<%=info.media%>.png); background-repeat: no-repeat; background-size: contain; background-position: right bottom;">
+  <div class="text-5xl font-bold text-left text-gray-600 my-5 mt-4 h-1/2 p-6 lg:mx-auto"> <span class="text-[8rem] kd_number_string " data-from="0" data-to="<%= info.to %>" data-refresh-interval="30"">0</span><h1 class="align-text-top ml-2"><mark class="dynamic-mark p-8" style="padding-top: 4px; padding-bottom: 4px;"><%= info.h1 %></mark></h1>
+  </div>
+</div>

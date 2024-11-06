@@ -1,0 +1,101 @@
+// Classe Subject (Publicador)
+class WeatherStation {
+    constructor() {
+        // Lista de observadores
+        this.observers = [];
+        
+        // Dados meteorológicos
+        this.temperature = 0;
+        this.humidity = 0;
+        this.pressure = 0;
+    }
+
+    // Método para adicionar observadores
+    addObserver(observer) {
+        this.observers.push(observer);
+    }
+
+    // Método para remover observadores
+    removeObserver(observer) {
+        this.observers = this.observers.filter(obs => obs !== observer);
+    }
+
+    // Método para notificar todos os observadores
+    notifyObservers() {
+        this.observers.forEach(observer => {
+            observer.update(this.temperature, this.humidity, this.pressure);
+        });
+    }
+
+    // Método para atualizar as condições meteorológicas
+    setMeasurements(temperature, humidity, pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        
+        // Notifica todos os observadores quando os dados mudam
+        this.notifyObservers();
+    }
+}
+
+// Interface Observer (Observador)
+class DisplayDevice {
+    update(temperature, humidity, pressure) {
+        // Método a ser implementado pelas classes concretas
+        throw new Error('Método update deve ser implementado');
+    }
+}
+
+// Observador Concreto 1: Display de Temperatura
+class TemperatureDisplay extends DisplayDevice {
+    update(temperature, humidity, pressure) {
+        console.log(`Temperature Display: ${temperature}°C`);
+    }
+}
+
+// Observador Concreto 2: Display de Umidade
+class HumidityDisplay extends DisplayDevice {
+    update(temperature, humidity, pressure) {
+        console.log(`Humidity Display: ${humidity}%`);
+    }
+}
+
+// Observador Concreto 3: Display de Pressão
+class PressureDisplay extends DisplayDevice {
+    update(temperature, humidity, pressure) {
+        console.log(`Pressure Display: ${pressure} hPa`);
+    }
+}
+ 
+// Demonstração do uso do padrão Observer
+function demonstrateObserverPattern() {
+    // Criar estação meteorológica
+    const weatherStation = new WeatherStation();
+
+    // Criar dispositivos de exibição
+    const tempDisplay = new TemperatureDisplay();
+    const humidityDisplay = new HumidityDisplay();
+    const pressureDisplay = new PressureDisplay();
+
+    // Adicionar observadores à estação meteorológica
+    weatherStation.addObserver(tempDisplay);
+    weatherStation.addObserver(humidityDisplay);
+    weatherStation.addObserver(pressureDisplay);
+
+    // Simular mudanças nas condições meteorológicas
+    console.log("Primeira atualização:");
+    weatherStation.setMeasurements(25, 60, 1013);
+
+    console.log("\nSegunda atualização:");
+    weatherStation.setMeasurements(28, 55, 1010);
+
+    // Remover um observador
+    console.log("\nRemovendo display de umidade...");
+    weatherStation.removeObserver(humidityDisplay);
+
+    console.log("\nTerceira atualização:");
+    weatherStation.setMeasurements(30, 50, 1008);
+}
+
+// Executar demonstração
+demonstrateObserverPattern();

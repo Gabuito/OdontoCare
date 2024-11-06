@@ -1,0 +1,33 @@
+<section id="about" class="bg-slate-100 w-screen max-w-full min-h-screen flex flex-col justify-center ">
+    
+
+  <div class="container flex flex-row mx-auto h-[75vh] mb-[10vh] " >
+
+    <img src="img/team.jpg" class="team_img object-cover overflow-hidden rounded-lg md:shadow-2xl  w-full lg:w-1/2 h-full" alt="Foto da filial de Dracena">
+
+    <div class="flex flex-col 2xl:h-full h-full lg:w-1/2 ml-6 p-6">
+
+    <h1 class="inline-block text-5xl font-bold text-left text-gray-600 mt-4 pt-2 pb-12">
+      Quem somos 
+      <div class="animate__animated animate__wobble animate__infinite animate__slower inline-block">&#9995;</div>
+    </h1>
+    <p class="text-xl text-pretty text-left  mb-12">
+      Na <img class="inline-block h-[1.5rem] w-auto pb-[0.06rem] mx-[35px]" style="scale: 2;" src="img/logo_sm_gray.png">, cuidamos do seu sorriso com dedicação e tecnologia de ponta.
+      <mark style="padding-top: 4px; padding-bottom: 4px;">Nossa equipe</mark> de especialistas oferece tratamentos personalizados e seguros, em parceria com as melhores empresas do setor de saúde, garantindo excelência em cada etapa.
+      <br>Valorizamos a ética e o respeito em cada atendimento, priorizando sempre sua confiança, conforto e uma experiência positiva.
+    </p>
+
+    <div class="flex flex-row justify-between gap-2 w-full h-full">
+
+      <%- include('../partials/cards/aboutcard.ejs', { info: { h2: "Valores", p: "Ética, respeito, confiança, segurança, excelência, inovação, comprometimento e humanização.", svg: "values" }}) %>
+
+      <%- include('../partials/cards/aboutcard.ejs', { info: { h2: "Missão", p: "Oferecer tratamentos odontológicos de qualidade, com tecnologia de ponta e atendimento humanizado, promovendo a saúde bucal e o bem-estar dos nossos pacientes.", svg: "mission" }}) %>
+    
+      <%- include('../partials/cards/aboutcard.ejs', { info: { h2: "Visão", p: "Ser referência em odontologia personalizada, com foco na prevenção, no diagnóstico precoce e no tratamento eficaz, contribuindo para a qualidade de vida e a autoestima dos nossos pacientes.", svg: "vision" }}) %>
+    
+    
+    </div>
+
+  </div>
+  
+</section>
