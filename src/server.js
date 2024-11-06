@@ -37,6 +37,6 @@ app.get('/login2', (req, res) => {
   res.status(200).render('dash/login.ejs', {layout : 'dash/layout/layout.ejs', perfil : {}});
 });
 
-app.listen(5000, '0.0.0.0', () => {
+app.listen( process.env.PORT || 5000, '0.0.0.0', () => {
   console.log('\n Server está ativo -> http://localhost:5000 \n');
 });
