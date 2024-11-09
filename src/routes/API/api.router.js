@@ -11,16 +11,6 @@ api.get('/v1/users/:id',
   user.listById()
 );
 
-api.get('/v1/users', auth.token(), user.list());
-api.post('/v1/users/create', auth.token(), user.create());
-api.put('/v1/users/update/:id', auth.token(), user.update());
-api.delete('/v1/users/delete/:id', auth.token(), user.delete());
-
-api.get('/v1/users/:id/protocols', auth.token(), user.listProtocolsbyId());
-api.get('/v1/users/:id/:idProtocols/employee', auth.token(), user.listEmployeebyProtocols());
-api.get('/v1/users/:id/:idProtocols/materials', auth.token(), user.listMaterialsbyProtocols());
-api.get('/v1/users/:id/:idProtocols/description', auth.token(), user.descriptionbyProtocols());
-
 api.get('/v1/profile/:id', auth.token(), profile.listById());
 api.put('/v1/profile/update/:id', auth.token(), profile.update());
 api.delete('/v1/profile/delete/:id', auth.token(), profile.delete());

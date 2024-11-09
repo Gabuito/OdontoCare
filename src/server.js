@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 
 //rotas
 import routerhttp from './routes/HTTP/web.router.js';
+import mock from './routes/MOCK/api.client.mock.js';
 
 
 const app = Express();
@@ -20,11 +21,13 @@ app.use(Layouts);
 
 app.use(Express.json());  
 
+
 // app.use(authRouter);
 // app.use(dashRouter);
 
 
 app.use(routerhttp);
+app.use("/api", mock);
 
 
 //temporario

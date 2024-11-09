@@ -1,4 +1,4 @@
-import database from './database.service.js';
+import database from './database.services.js';
 
 async function getRoles() {
   try {

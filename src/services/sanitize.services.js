@@ -33,4 +33,28 @@ export class SanitizeData {
         return value.length === 14 ? formatCNPJ(value) : formatCPF(value);
     }
 
+    static sanitizePhone(value) {
+        if (typeof value !== 'string') throw new Error(`Invalid input: Expected string but received ${typeof value}`);
+        return value.replace(/\D/g, '');
+    }
+
+    static formatPhone(value) {
+        if (typeof value !== 'string' || (value.length !== 10 && value.length !== 11)) {
+            throw new Error(`Invalid input: Expected string with 10 or 11 characters but received ${typeof value} with ${value.length} characters`);
+        }
+        const formatPhone = v => v.replace(/(\d{2})(\d{4,5})(\d{4})/, '($1) $2-$3');
+        return formatPhone(value);
+    }
+
+    static sanitizeCEP(value) {
+        if (typeof value !== 'string') throw new Error(`Invalid input: Expected string but received ${typeof value}`);
+        return value.replace(/\D/g, '');
+    }
+
+    static formatCEP(value) {
+        if (typeof value !== 'string' || value.length !== 8) throw new Error(`Invalid input: Expected string with 8 characters but received ${typeof value} with ${value.length} characters`);
+        return value.replace(/(\d{5})(\d{3})/, '$1-$2');
+    }
 }
+
+export default SanitizeData;    
