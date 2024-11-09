@@ -1,9 +1,16 @@
 import { Router } from 'express';
-import auth from '../../middlewares/auth.js';
+import Auth, {extractToken} from '../../middlewares/auth.middleware.js';
 
+const auth = new Auth(process.env.JWT_SECRET || JWT_SECRET);
 const api = Router();
 
-api.get('/v1/users/:id', auth.token(), user.listById());
+api.get('/v1/users/:id',
+  auth.extractToken,
+  auth.verifyToken,
+  auth.checkPermissions(['read_users_any','read_users_own']), 
+  user.listById()
+);
+
 api.get('/v1/users', auth.token(), user.list());
 api.post('/v1/users/create', auth.token(), user.create());
 api.put('/v1/users/update/:id', auth.token(), user.update());

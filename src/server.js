@@ -37,7 +37,7 @@ app.get('/login2', (req, res) => {
   res.status(200).render('dash/login.ejs', {layout : 'dash/layout/layout.ejs', perfil : {}});
 });
 
-const PORT = process.env.PORT || 5000;//GCP configuração de porta
+const PORT = process.env.PORT || 5000; //GCP configuração de porta
 app.listen(PORT, () => {
-  console.log('\n Server está ativo -> http://localhost:${PORT} \n');
+  console.log(`\n Server está ativo -> http://localhost:${PORT} \n`);
 });
