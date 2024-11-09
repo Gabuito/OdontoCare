@@ -3,7 +3,7 @@
 Documentação especifica para verificação, criação, atribuição e atualizaçao de dados e controle de Pacientes e seus procedimentos
 
 Pode ser visualizado no [<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/refs/heads/6.x/svgs/brands/square-github.svg" height="12">
-Repositorio Github/Documentação de API Cliente](https://github.com/Gabuito/OdontoCare/tree/master/src/documentation/ClientAPI.md)
+Repositorio Github/Documentação de API Cliente](https://github.com/Gabuito/OdontoCare/tree/master/src/documentation/API/ClientAPI.md)
 
 ou pelo URL do sistema em [✨ /v1/docs/APIClient](http://localhost:5000/v1/docs/APIClient)
 
