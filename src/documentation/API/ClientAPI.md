@@ -29,10 +29,14 @@ Todas as respostas seguem o padrão abaixo:
 ```javascript
 {
   "success": true,
+  "message": "Mensagem descritiva", 
   "data": {
     // dados da resposta
   },
-  "timestamp": "2024-11-09T10:00:00Z"
+  "links":{
+    // endpoints relacionados (opcional)
+  },
+  "timestamp": "Data-Hora-Local"
 }
 ```
 
@@ -45,13 +49,95 @@ Todas as respostas seguem o padrão abaixo:
     "message": "Mensagem descritiva do erro",
     "details": {} // Detalhes adicionais quando aplicável
   },
-  "timestamp": "2024-11-09T10:00:00Z"
+  "timestamp": "Data-Hora-Local"
 }
 ```
 
 ## Endpoints
 
-### 1. Listar Usuários
+### 1. Cadastrar Usuários
+
+Responsavel por cadastrar `Clientes` ao sistema e ao banco de dados, há validação interna além de inibir duplicidade de cadastros.
+
+```http
+POST api/v1/users/create
+```
+**Permissões:** `null`
+
+### ✅ Caso Válido
+**Request**
+```http
+POST api/v1/users/create
+Content-Type: application/json
+
+{
+	"name": "Fulano",
+	"email": "fulano@gmail.com",
+	"password": "123",
+	"cpf": "123-456-789-10",
+	"phone": "(12)34567-8910",
+	"address": {
+		"address": "Rua dos Bobos 7",
+		"city": "São Paulo",
+		"state": "São Paulo",
+		"zipCode": "01345-678",
+		"country": "Brasil"
+	},
+	"birthDate": "1990-10-01",
+	"plan": "ONDEMAND",
+	"price": 123.45
+}
+```
+
+**Response** (200 OK)
+```javascript
+{
+	"success": true,
+	"message": "Cliente registrado com sucesso",
+	"data": {
+		"userId": "0123456abcdefg",
+		"name": "Fulano",
+		"email": "fulano@gmail.com",
+		"cpf": "123-456-789-10"
+	},
+  "links": {
+			"self": "/api/v1/users/create",
+			"profile": "/api/v1/users/0123456abcdefg",
+			"logout": "/api/v1/users/logout"
+		}
+	"metadata": {
+		"apiVersion": "1.0",
+		"timestamp": "2024-11-13T19:27:40-03:00"
+	}
+}
+```
+
+#### ❌ Caso Inválido
+**Request**
+```http
+POST api/v1/users/create
+Content-Type: application/json
+
+{
+	"name": "Fulano"
+}
+```
+
+**Response** (403 Forbidden)
+```javascript
+{
+  "success": false,
+  "error": {
+    "code": "INSUFFICIENT_DATA",
+    "message": "Falta informações importantes na solicitação"
+  },
+  "timestamp": "2024-11-09T10:00:00Z"
+}
+```
+
+
+
+### 2. Listar Usuários
 ```http
 GET /v1/users
 ```
@@ -394,6 +480,7 @@ Authorization: Bearer {token-dentista-responsavel}
 
 ## Códigos de Erro
 
+- `INSUFFICIENT_DATA`: Falta informações importantes no envio
 - `INSUFFICIENT_PERMISSIONS`: Usuário não possui as permissões necessárias
 - `INVALID_TOKEN`: Token de autenticação inválido ou expirado
 - `PATIENT_NOT_FOUND`: Paciente não encontrado

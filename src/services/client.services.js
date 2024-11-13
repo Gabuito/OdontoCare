@@ -20,7 +20,7 @@ class ClientService {
     };
   }
 
-  compareClienteAndDado() {
+  static compareClienteAndDado() {
     return async (conn, worker, id) => {
       const cliente = await this.searchById(conn, worker, id);
       const dado = await this.searchByCpf(conn, worker,cliente[0].cl_cpf);

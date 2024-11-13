@@ -10,11 +10,12 @@ class AuthMiddleware {
   }
 
   extractToken = (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    if (authHeader && authHeader.startsWith('Bearer ')) {
-        req.token = authHeader.split(' ')[1];
+    const token = req.cookies.authToken || req.headers.authorization;
+    if (token) {
+      req.token = token;
+        next();
     }
-    next();
+    throw new Error('Token não fornecido');
 }
 
   verifyToken = (req, res, next) => {

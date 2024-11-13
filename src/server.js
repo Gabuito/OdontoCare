@@ -1,25 +1,37 @@
 import Express from 'express';
 import Layouts from 'express-ejs-layouts';
 import Path from 'path';
+import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 // import authRouter from './routes/authRouter.js';
 // import dashRouter from './routes/dashRouter.js';
 
 
+const app = Express();
+
 //rotas
 import routerhttp from './routes/HTTP/web.router.js';
 import mock from './routes/MOCK/api.client.mock.js';
 
+//Middleware JSON
+app.use(Express.json());
 
-const app = Express();
+//Middleware Cookie
+app.use(cookieParser());
+
+//Desabilitar Header Default
+app.disable('x-powered-by');
+app.disable('etag');
+
+//Middleware Form
+app.use(Express.urlencoded({ extended: true }));
+
 const __filename = fileURLToPath(import.meta.url);  
 const __dirname = Path.dirname(__filename);     
 app.use(Express.static(Path.join(__dirname, '..', 'public')));
 app.set('view engine', 'ejs');
 app.set('views', Path.join(__dirname, '..', 'src', 'views'));
 app.use(Layouts);
-
-app.use(Express.json());  
 
 
 // app.use(authRouter);
@@ -28,6 +40,7 @@ app.use(Express.json());
 
 app.use(routerhttp);
 app.use("/api", mock);
+
 
 
 //temporario

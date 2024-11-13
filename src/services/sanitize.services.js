@@ -55,6 +55,18 @@ export class SanitizeData {
         if (typeof value !== 'string' || value.length !== 8) throw new Error(`Invalid input: Expected string with 8 characters but received ${typeof value} with ${value.length} characters`);
         return value.replace(/(\d{5})(\d{3})/, '$1-$2');
     }
+
+    static toBinaryUUID(uuid) {
+        const bytes = uuidParse(uuid);
+        return Buffer.from(bytes);
+    }
+
+    // Converte Buffer para string UUID
+    static toStringUUID(buffer) {
+        if (!buffer) return null;
+        const bytes = new Uint8Array(buffer);
+        return uuidStringify(bytes);
+    }
 }
 
 export default SanitizeData;    

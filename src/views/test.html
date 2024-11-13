@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Animado</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #7190BE;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: float infinite;
+}
+
+
+/* Gerando círculos dinamicamente com JavaScript */
+</style>
+</head>
+<body>
+
+<div class="background">
+  </div>
+
+<script>
+const background = document.querySelector('.background');
+const numCircles = 15; // Número de círculos
+
+for (let i = 0; i < numCircles; i++) {
+  const circle = document.createElement('div');
+  circle.classList.add('circle');
+
+  // Tamanho aleatório
+  const size = Math.random() * 60 + 20; // Entre 20px e 80px
+  circle.style.width = `${size}px`;
+  circle.style.height = `${size}px`;
+
+  // Posição aleatória
+  circle.style.left = `${Math.random() * 100}%`;
+  circle.style.top = `${Math.random() * 100}%`;
+
+ // Duração e atraso da animação aleatórios
+  const duration = Math.random() * 10 + 5; // Entre 5s e 15s
+  const delay = Math.random() * 5;  // Atraso de até 5s
+  circle.style.animationDuration = `${duration}s`;
+  circle.style.animationDelay = `${delay}s`;
+
+  background.appendChild(circle);
+}
+</script>
+
+
+<style>
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(20px, -20px);  /* Movimento mais sutil */
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.5;
+  }
+}
+</style>
+
+
+
+<h1>Exemplo de Título</h1>
+<p>Este é um exemplo de parágrafo sobre o seu conteúdo. O background animado com CSS puro cria uma atmosfera suave e elegante.</p>
+
+
+</body>
+</html>
