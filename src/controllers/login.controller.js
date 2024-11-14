@@ -10,9 +10,9 @@ import { hashPassword, comparePassword } from '../services/password.services.js'
 class LoginController {
 
   async token(req, res) {
-    
+
     res.status(200).json({
-      token: req.cookies.authToken,
+      token:{data: req.token_data}
     });
 
   }
@@ -29,11 +29,28 @@ class LoginController {
       await workerDB.commitTransaction(conn);
       const compared = await comparePassword(password, user[0].client_password);
 
-      if (user && compared) {
-        const token = jwt.sign({ email }, process.env.JWT_SECRET || JWT_SECRET, {
+      
+      if (user && compared ) {
+
+      conn = await workerDB.beginTransaction();
+      const employee = await workerDB.readByColumn('tb_employee', 'employee_uuid', user[0].client_uuid, conn);
+      await workerDB.commitTransaction(conn);
+
+      var token;
+
+      if (employee.length > 0) {
+        conn = await workerDB.beginTransaction();
+        const role = await workerDB.readByColumn('tb_role', 'role_id', employee[0].role_id, conn);
+        await workerDB.commitTransaction(conn);
+        
+          token = jwt.sign({userId: employee[0].employee_uuid.toString('hex'), role: role[0].role_acronym, permissions: role[0].role_permissions }, process.env.JWT_SECRET || JWT_SECRET, {
           expiresIn: 86400,
         });
-
+      }else{
+          token = jwt.sign({userId: user[0].client_uuidtoString('hex')}, process.env.JWT_SECRET || JWT_SECRET, {
+          expiresIn: 86400,
+        });
+      }
         res.cookie('authToken', token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' ? true : false,

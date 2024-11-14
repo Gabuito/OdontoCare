@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import getRoles from '../services/database.roles.service.js';
 
 class AuthMiddleware {
   constructor(secret) {
@@ -9,47 +8,48 @@ class AuthMiddleware {
     this.secret = secret;
   }
 
+  // Middleware para extrair o token do cookie
   extractToken = (req, res, next) => {
-    const token = req.cookies.authToken || req.headers.authorization;
-    if (token) {
-      req.token = token;
-        next();
+    const token = req.cookies.authToken;
+
+    if (!token) {
+      return res.status(401).json({ success: false, message: 'Token não fornecido' });
     }
-    throw new Error('Token não fornecido');
-}
 
-  verifyToken = (req, res, next) => {
     try {
-      const token = req.token
-
-      if (!token) {
-        return res.status(401).json({ success: false, message: 'Token não fornecido' });
-      }
-
-      jwt.verify(token, this.secret, (err, decoded) => {
-        if (err) {
-          return res.status(401).json({ 
-            success: false, 
-            message: err.name === 'TokenExpiredError' ? 'Token expirado' : 'Token inválido' 
-          });
-        }
-
-        req.user = decoded;
-        next();
+      // Decodifica e verifica o token
+      const decoded = jwt.verify(token, this.secret);
+      req.token_data = decoded;
+      next();
+    } catch (err) {
+      return res.status(401).json({
+        success: false,
+        message: err.name === 'TokenExpiredError' ? 'Token expirado' : 'Token inválido',
       });
-    } catch (error) {
-      return res.status(500).json({ success: false, message: 'Erro de autenticação' });
     }
   };
 
+  // Middleware para verificar se o token é válido
+  verifyToken = (req, res, next) => {
+    if (!req.token_data) {
+      return res.status(401).json({ success: false, message: 'Token não fornecido' });
+    }
+    next();
+  };
 
+  // Middleware para verificar permissões
   checkPermissions = (requiredPermissions) => {
     return (req, res, next) => {
-      if (!req.user || !Array.isArray(req.user.permissions)) {
+      const userPermissions = req.token_data?.permissions;
+
+      if (!userPermissions || !Array.isArray(userPermissions)) {
         return res.status(403).json({ success: false, message: 'Acesso negado. Permissões não encontradas.' });
       }
 
-      if (requiredPermissions.some(permission => req.user.permissions.includes(permission))) {
+      // Verifica se o usuário possui alguma das permissões necessárias
+      const hasRequiredPermission = requiredPermissions.some((permission) => userPermissions.includes(permission));
+
+      if (hasRequiredPermission) {
         next();
       } else {
         return res.status(403).json({ success: false, message: 'Acesso negado. Permissões insuficientes.' });
