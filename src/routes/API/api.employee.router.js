@@ -40,4 +40,13 @@ api.delete('/v1/employees/:id/delete',
   employee.delete()
 );
 
+
+
+
+api.get('/v1/employees/:id', auth.token(), employee.listById());
+api.get('/v1/employees', auth.token(), employee.list());
+api.post('/v1/employees/create', auth.token(), employee.create());
+api.put('/v1/employees/update/:id', auth.token(), employee.update());
+api.delete('/v1/employees/delete/:id', auth.token(), employee.delete());
+
 export default api;

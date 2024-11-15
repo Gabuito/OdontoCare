@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Responsivo</title>
+    <!-- Tailwind CSS e Bootstrap Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-slate-200">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-lg z-50">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">OdontoCare Dashboard</h1>
+            <i class="bi bi-person-circle text-3xl"></i>
+        </div>
+    </nav>
+
+    <!-- Container Principal -->
+    <div class="container mx-auto mt-24 p-5">
+        <!-- Skeleton Loader -->
+        <div id="skeleton" class="animate-pulse space-y-6">
+            <!-- Card 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+                <div class="h-8 bg-gray-300 rounded w-1/3"></div>
+                <div class="h-4 bg-gray-300 rounded w-full"></div>
+                <div class="h-4 bg-gray-300 rounded w-5/6"></div>
+                <div class="h-4 bg-gray-300 rounded w-2/3"></div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+                <div class="h-8 bg-gray-300 rounded w-1/4"></div>
+                <div class="h-4 bg-gray-300 rounded w-full"></div>
+                <div class="h-4 bg-gray-300 rounded w-4/5"></div>
+                <div class="h-4 bg-gray-300 rounded w-3/4"></div>
+            </div>
+        </div>
+
+        <!-- Conteúdo Real (oculto inicialmente) -->
+        <div id="content" class="hidden space-y-6">
+            <!-- Card de Dados 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">Consultas Hoje</h2>
+                <p>Você tem 5 consultas agendadas para hoje.</p>
+            </div>
+            <!-- Card de Dados 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">Novos Pacientes</h2>
+                <p>3 novos pacientes se cadastraram esta semana.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para Controle do Carregamento -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Simula o carregamento com um tempo de espera
+            setTimeout(() => {
+                // Oculta o Skeleton Loader
+                document.getElementById('skeleton').classList.add('hidden');
+                // Exibe o conteúdo real
+                document.getElementById('content').classList.remove('hidden');
+            }, 3000); // 3 segundos de espera
+        });
+    </script>
+</body>
+
+</html>

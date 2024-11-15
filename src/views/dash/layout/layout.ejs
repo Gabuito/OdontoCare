@@ -1,29 +1,160 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OdontoSoft - Sistema Odontocare</title>
+    <title>Dashboard Responsivo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <style>
-        .sidebar {
-            transition: transform 0.3s ease-in-out;
-        }
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .sidebar.open {
-                transform: translateX(0);
-            }
-            body{
-                min-width: 100vw !important;
-            }
-        }
-
-        
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
- <%- body %>
+
+<body class="bg-slate-200">
+    <nav class="fixed top-0 left-0 right-0 bg-slate-800 shadow-md z-50 flex justify-between items-center p-4 px-6 lg:px-16">
+        <img src="./img/logo_sm.png" class="mx-12 lg:mx-2 h-8 lg:h-10 transition-transform duration-300 hover:scale-105" alt="Logo">
+        <div class="flex items-center space-x-4">
+            <button class="relative transition-transform duration-300 hover:scale-110">
+                <i class="bi bi-bell text-2xl text-gray-100"></i>
+            </button>
+            <div class="relative z-50">
+                <button id="dropdownButton" class="focus:outline-none transition-transform duration-300 hover:scale-105">
+                    <img src="<%= data.profile ? `./img/perfil/${data.profile}.png` : './img/dash/profile.svg' %>" 
+     class=" border-white border w-8 h-8 lg:w-10 lg:h-10 rounded-full text-white" 
+     alt="Profile">
+
+                </button>
+                <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50 transition-all duration-300 opacity-0 transform scale-95">
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 transition-colors duration-200">
+                        <i class="bi bi-person-circle mr-2"></i>Perfil
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200 transition-colors duration-200">
+                        <i class="bi bi-gear mr-2"></i>Configuração
+                    </a>
+                    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-red-600 hover:text-white transition-colors duration-200">
+                        <i class="bi bi-box-arrow-right mr-2"></i>Sair
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <aside id="sidebar" class="fixed top-16 bottom-0 left-0 w-64 bg-gray-700 shadow-lg p-4 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out text-white lg:space-y-4 z-40">
+        <input type="text" placeholder="Buscar..." class="text-black w-full p-2 mt-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="searchInput">
+        <nav class="mt-6 space-y-4">
+            <a href="#" class="flex items-center py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200">
+                <i class="bi bi-house-door mr-2"></i>Dashboard
+            </a>
+            <button id="protocolsButton" class="w-full text-left py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200 flex items-center">
+                <i class="bi bi-people mr-2"></i>Pacientes
+                <i class="bi bi-chevron-down ml-auto transition-transform duration-200"></i>
+            </button>
+            <div id="protocolsMenu" class="hidden space-y-2 pl-4 transition-all duration-200">
+                <a href="#" class="flex items-center py-1 px-4 hover:bg-gray-600 transition-colors duration-200">
+                    <i class="bi bi-person-plus mr-2"></i>Criar Paciente
+                </a>
+                <a href="#" class="flex items-center py-1 px-4 hover:bg-gray-600 transition-colors duration-200">
+                    <i class="bi bi-journal-plus mr-2"></i>Criar Atendimento
+                </a>
+            </div>
+            <a href="#" class="flex items-center py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200">
+                <i class="bi bi-file-earmark-text mr-2"></i>Relatórios
+            </a>
+            <a href="#" class="flex items-center py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200">
+                <i class="bi bi-gear mr-2"></i>Opções
+            </a>
+        </nav>
+    </aside>
+
+    <button id="hamburgerMenu" class="lg:hidden fixed top-4 left-4 z-50 transition-transform duration-200 hover:scale-110">
+        <i class="bi bi-list text-3xl text-gray-100"></i>
+    </button>
+
+    <%- body %>
+   
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const protocolsButton = document.getElementById('protocolsButton');
+        const protocolsMenu = document.getElementById('protocolsMenu');
+        const searchInput = document.getElementById('searchInput');
+
+        hamburgerMenu.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        dropdownButton.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+            dropdownMenu.classList.toggle('opacity-0');
+            dropdownMenu.classList.toggle('scale-95');
+        });
+
+        protocolsButton.addEventListener('click', () => {
+            protocolsMenu.classList.toggle('hidden');
+            protocolsButton.querySelector('.bi-chevron-down').classList.toggle('rotate-180');
+        });
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            const links = sidebar.querySelectorAll('a, button');
+            links.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    link.classList.remove('hidden');
+                } else {
+                    link.classList.add('hidden');
+                }
+            });
+        });
+
+
+        function renderChart(data) {
+            new Chart(document.getElementById('myChart').getContext('2d'), {
+                        type: 'line',
+                        
+                        data: {
+                            datasets: [{
+                                data: data.monthy,
+                                borderColor: '#656565',
+                                fill: true,
+                                backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: false,
+                                    suggestedMin: 100
+                                }
+                            },
+                            animation: {
+                                duration: 2000,
+                                easing: 'easeInOutQuart'
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }
+                    });
+        }
+          renderChart(<%- JSON.stringify(data) %>);
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('opacity-0');
+                section.classList.add('translate-y-4');
+                setTimeout(() => {
+                    section.classList.add('transition-all', 'duration-1000');
+                    section.classList.remove('opacity-0', 'translate-y-4');
+                }, 100);
+            });
+        });
+    </script>
+</body>
 </html>

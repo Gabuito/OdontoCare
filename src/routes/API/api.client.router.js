@@ -1,9 +1,13 @@
 import { Router } from 'express';
 import Auth from '../../middlewares/auth.middleware.js';
-import user from '../../controllers/login.controller.js';
+import user from '../../controllers/API/login.controller.js';
 
 const auth = new Auth(process.env.JWT_SECRET || JWT_SECRET);
 const api = Router();
+
+api.get('/v1/profile/:id', auth.token(), profile.listById());
+api.put('/v1/profile/update/:id', auth.token(), profile.update());
+api.delete('/v1/profile/delete/:id', auth.token(), profile.delete());
 
 api.get('/v1/users', 
   auth.extractToken,

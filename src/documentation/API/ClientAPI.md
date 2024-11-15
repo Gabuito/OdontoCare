@@ -60,14 +60,14 @@ Todas as respostas seguem o padrão abaixo:
 Responsavel por cadastrar `Clientes` ao sistema e ao banco de dados, há validação interna além de inibir duplicidade de cadastros.
 
 ```http
-POST api/v1/users/create
+POST /api/v1/users/create
 ```
 **Permissões:** `null`
 
 ### ✅ Caso Válido
 **Request**
 ```http
-POST api/v1/users/create
+POST /api/v1/users/create
 Content-Type: application/json
 
 {
@@ -115,7 +115,7 @@ Content-Type: application/json
 #### ❌ Caso Inválido
 **Request**
 ```http
-POST api/v1/users/create
+POST /api/v1/users/create
 Content-Type: application/json
 
 {

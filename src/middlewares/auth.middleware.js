@@ -11,11 +11,10 @@ class AuthMiddleware {
   // Middleware para extrair o token do cookie
   extractToken = (req, res, next) => {
     const token = req.cookies.authToken;
-
     if (!token) {
-      return res.status(401).json({ success: false, message: 'Token não fornecido' });
+      req.token_data = null;  
+      return next();
     }
-
     try {
       // Decodifica e verifica o token
       const decoded = jwt.verify(token, this.secret);

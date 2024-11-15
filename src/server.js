@@ -3,15 +3,12 @@ import Layouts from 'express-ejs-layouts';
 import Path from 'path';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
-// import authRouter from './routes/authRouter.js';
-// import dashRouter from './routes/dashRouter.js';
-
 
 const app = Express();
 
 //rotas
-import routerhttp from './routes/HTTP/web.router.js';
-import mock from './routes/MOCK/api.client.mock.js';
+import routerhttp from './routes/HTTP/http.gateway.js';
+import routerAPI from './routes/API/api.gateway.js';
 
 //Middleware JSON
 app.use(Express.json());
@@ -39,7 +36,7 @@ app.use(Layouts);
 
 
 app.use(routerhttp);
-app.use("/api", mock);
+app.use("/api", routerAPI);
 
 
 

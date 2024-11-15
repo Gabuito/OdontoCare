@@ -4,20 +4,18 @@ import loginController from '../../controllers/API/login.controller.js';
 const api = Router();
 const auth = new Auth(process.env.JWT_SECRET || JWT_SECRET);
 
-api.post('/v1/users/create', 
+api.post('/v1/users/create',
   loginController.register
 );
 
-api.post('/v1/users/login', 
+api.post('/v1/users/login',
+  auth.extractToken,
   loginController.login
 );
 
-api.get('/v1/users/gettoken',
+api.post('/v1/users/logout',
   auth.extractToken,
-  auth.verifyToken,
-  auth.checkPermissions(['create_protocols']),
-  loginController.token
-);  
-
+  loginController.logout
+);
 
 export default api;

@@ -1,0 +1,46 @@
+<main class="container mx-auto lg:ml-64 p-8 pt-24">
+  <section class="bg-white p-6 rounded shadow mb-6 transform transition-all duration-300 hover:shadow-lg relative z-20">
+      <h1 class="text-2xl font-bold mb-6">⚡️ Ações Rápidas</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-blue-500 text-white p-6 rounded shadow hover:bg-blue-600 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center">
+              <i class="bi bi-calendar-plus text-2xl mr-2"></i>Agendar
+          </div>
+          <div class="bg-green-500 text-white p-6 rounded shadow hover:bg-green-600 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center">
+              <i class="bi bi-calendar-week text-2xl mr-2"></i>Ver Agendamentos
+          </div>
+          <div class="bg-purple-500 text-white p-6 rounded shadow hover:bg-purple-600 cursor-pointer transition-all duration-300 transform hover:scale-105 flex items-center">
+              <i class="bi bi-person-plus text-2xl mr-2"></i>Cadastrar Cliente
+          </div>
+      </div>
+  </section>
+
+  <section class="bg-white p-6 rounded shadow transform transition-all duration-300 hover:shadow-lg relative z-20">
+      <h1 class="text-2xl font-bold mb-6">✨ Visão Geral</h1>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-gray-100 p-6 rounded shadow flex flex-col justify-between transform transition-all duration-300 hover:scale-102">
+              <h2 class="font-bold text-lg flex items-center">
+                  <i class="bi bi-person-circle mr-2"></i>Último Cadastro
+              </h2>
+              <h3 class="text-3xl text-gray-700 font-semibold"><%= data.newUser.name%></h3>
+              <p><i class="bi bi-star mr-2"></i><%=data.newUser.plan%></p>
+              <a href="#" class="mt-4 bg-blue-500 text-white p-2 rounded transition-colors duration-200 hover:bg-blue-600 flex items-center justify-center">
+                  <i class="bi bi-eye mr-2"></i>Ver Detalhes
+              </a>
+          </div>
+          <div class="bg-gray-100 p-6 rounded shadow transform transition-all duration-300 hover:scale-102">
+            <h2 class="font-bold text-lg flex items-center">
+              <i class="bi bi-calendar2-date-fill mr-2"></i>Média de Atendimentos Mensal
+          </h2>
+              <canvas id="myChart"></canvas>
+          </div>
+          <div class="flex flex-col bg-gray-100 p-6 rounded shadow  transform transition-all duration-300 hover:scale-102">
+            <div><h2 class="font-bold text-lg  items-center">
+              <i class="bi bi-emoji-laughing mr-2"></i>Total de Clientes
+          </h2></div>
+            
+          <div class="flex justify-center items-center text-6xl font-bold h-full">
+              <i class="bi bi-people text-7xl mr-2"></i><%= data.users %></div>
+          </div>
+      </div>
+  </section>
+</main>
