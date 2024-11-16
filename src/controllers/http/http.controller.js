@@ -7,17 +7,7 @@ class httpController {
         };
     }
 
-    loginpage() {
-        return (req, res) => {
-            res.status(200).render('login/index2', { layout: false });
-        };
-    }
-    
-    createpage() {
-        return (req, res) => {
-            res.status(200).render('login/index', { layout: false });
-        };
-    }
+
     testview() {
         return (req, res) => {
             let id = req.params.id;

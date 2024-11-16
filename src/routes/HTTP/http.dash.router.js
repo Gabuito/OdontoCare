@@ -4,7 +4,7 @@ const dashRouter = Router();
 
 dashRouter.get('/dashboard', async (req, res) => {
   try {
-    // É recomendado usar variáveis de ambiente para URLs
+    
     const API_URL = process.env.API_URL || 'http://localhost:5000';
     
     const response = await fetch(`${API_URL}/api/v1/users/login`, {
@@ -18,8 +18,9 @@ dashRouter.get('/dashboard', async (req, res) => {
       })
     });
 
+    
     const data = await response.json();
-
+    
     res.render('dash/index', { 
       layout: 'dash/layout/layout', 
       data: { users: 1090,
@@ -51,6 +52,16 @@ dashRouter.get('/dashboard', async (req, res) => {
     });
   }
 });
+
+dashRouter.get('/dashboard/clients/new', async (req, res) => {
+  res.render('dash/create_cli', { layout: 'dash/layout/layout', data: {} });
+}
+);
+
+dashRouter.get('/dashboard/employee/new', async (req, res) => {
+  res.render('dash/create_emp', { layout: 'dash/layout/layout', data: {} });
+}
+);
 
   
 

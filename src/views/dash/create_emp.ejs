@@ -1,0 +1,94 @@
+<main class="container mx-auto p-8 pt-24 lg:max-w-4xl">
+  <section class="bg-white p-8 rounded-lg shadow transform transition-all duration-300 hover:shadow-lg">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+      <i class="bi bi-person-plus-fill text-green-500 mr-3"></i> Cadastro de Funcionário
+    </h1>
+    
+    <form action="/funcionarios/cadastrar" method="POST" enctype="multipart/form-data" class="space-y-8">
+      <!-- Foto do Funcionário -->
+      <div class="flex items-center space-x-6">
+        <label class="block">
+          <span class="sr-only">Escolha uma foto</span>
+          <input type="file" name="foto" class="block w-full text-sm text-gray-500
+            file:mr-4 file:py-2 file:px-4
+            file:rounded-full file:border-0
+            file:text-sm file:font-semibold
+            file:bg-blue-50 file:text-blue-700
+            hover:file:bg-blue-100"/>
+        </label>
+      </div>
+
+      <!-- Nome Completo -->
+      <div>
+        <label for="nome" class="block text-gray-700">Nome Completo:</label>
+        <input type="text" name="nome" id="nome" required class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+
+      <!-- Função -->
+      <div>
+        <label for="funcao" class="block text-gray-700">Função:</label>
+        <select name="funcao" id="funcao" required class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500" onchange="toggleClinicaFields(this.value)">
+          <option value="">Selecione</option>
+          <option value="clinica">Clínica</option>
+          <option value="administrativo">Administrativo</option>
+          <option value="financeiro">Financeiro</option>
+        </select>
+      </div>
+
+      <!-- Campos condicionais para Clínica -->
+      <div id="clinicaFields" class="hidden space-y-8">
+        <!-- Especialidade -->
+        <div>
+          <label for="especialidade" class="block text-gray-700">Especialidade:</label>
+          <select name="especialidade" id="especialidade" class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500">
+            <option value="">Selecione</option>
+            <option value="dentista">Dentista</option>
+            <option value="ortodontista">Ortodontista</option>
+            <option value="endodontista">Endodontista</option>
+          </select>
+        </div>
+
+        <!-- CRO -->
+        <div>
+          <label for="cro" class="block text-gray-700">CRO:</label>
+          <input type="text" name="cro" id="cro" class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500">
+        </div>
+      </div>
+
+      <!-- Salário -->
+      <div>
+        <label for="salario" class="block text-gray-700">Salário:</label>
+        <input type="number" name="salario" id="salario" step="0.01" required class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500">
+      </div>
+
+      <!-- Turno -->
+      <div>
+        <label for="turno" class="block text-gray-700">Turno:</label>
+        <select name="turno" id="turno" required class="w-full p-3 border rounded-md focus:outline-none focus:border-blue-500">
+          <option value="">Selecione</option>
+          <option value="manha">Manhã</option>
+          <option value="tarde">Tarde</option>
+          <option value="noite">Noite</option>
+        </select>
+      </div>
+
+      <!-- Botão de Enviar -->
+      <div>
+        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-md transition-colors">
+          Cadastrar Funcionário
+        </button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script>
+  function toggleClinicaFields(funcao) {
+    const clinicaFields = document.getElementById('clinicaFields');
+    if (funcao === 'clinica') {
+      clinicaFields.classList.remove('hidden');
+    } else {
+      clinicaFields.classList.add('hidden');
+    }
+  }
+</script>

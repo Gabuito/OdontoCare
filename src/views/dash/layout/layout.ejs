@@ -12,14 +12,14 @@
 
 <body class="bg-slate-200">
     <nav class="fixed top-0 left-0 right-0 bg-slate-800 shadow-md z-50 flex justify-between items-center p-4 px-6 lg:px-16">
-        <img src="./img/logo_sm.png" class="mx-12 lg:mx-2 h-8 lg:h-10 transition-transform duration-300 hover:scale-105" alt="Logo">
+        <img src="/img/logo_sm.png" class="mx-12 lg:mx-2 h-8 lg:h-10 transition-transform duration-300 hover:scale-105" alt="OdontoCare - Interno">
         <div class="flex items-center space-x-4">
             <button class="relative transition-transform duration-300 hover:scale-110">
                 <i class="bi bi-bell text-2xl text-gray-100"></i>
             </button>
             <div class="relative z-50">
                 <button id="dropdownButton" class="focus:outline-none transition-transform duration-300 hover:scale-105">
-                    <img src="<%= data.profile ? `./img/perfil/${data.profile}.png` : './img/dash/profile.svg' %>" 
+                    <img src="<%= data.profile ? `/img/perfil/${data.profile}.png` : '/img/dash/profile.svg' %>" 
      class=" border-white border w-8 h-8 lg:w-10 lg:h-10 rounded-full text-white" 
      alt="Profile">
 
@@ -42,7 +42,7 @@
     <aside id="sidebar" class="fixed top-16 bottom-0 left-0 w-64 bg-gray-700 shadow-lg p-4 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out text-white lg:space-y-4 z-40">
         <input type="text" placeholder="Buscar..." class="text-black w-full p-2 mt-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="searchInput">
         <nav class="mt-6 space-y-4">
-            <a href="#" class="flex items-center py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200">
+            <a href="/dashboard" class="flex items-center py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200">
                 <i class="bi bi-house-door mr-2"></i>Dashboard
             </a>
             <button id="protocolsButton" class="w-full text-left py-2 px-4 rounded hover:bg-gray-600 transition-colors duration-200 flex items-center">
@@ -50,7 +50,7 @@
                 <i class="bi bi-chevron-down ml-auto transition-transform duration-200"></i>
             </button>
             <div id="protocolsMenu" class="hidden space-y-2 pl-4 transition-all duration-200">
-                <a href="#" class="flex items-center py-1 px-4 hover:bg-gray-600 transition-colors duration-200">
+                <a href="/dashboard/clients/new" class="flex items-center py-1 px-4 hover:bg-gray-600 transition-colors duration-200">
                     <i class="bi bi-person-plus mr-2"></i>Criar Paciente
                 </a>
                 <a href="#" class="flex items-center py-1 px-4 hover:bg-gray-600 transition-colors duration-200">

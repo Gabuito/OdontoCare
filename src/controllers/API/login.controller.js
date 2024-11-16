@@ -76,7 +76,7 @@ class LoginController {
             );
           } else {
             token = jwt.sign(
-              { userId: user[0].client_uuidtoString("hex") },
+              { userId: user[0].client_uuid.toString("hex") },
               process.env.JWT_SECRET || JWT_SECRET,
               {
                 expiresIn: 86400,
@@ -159,6 +159,9 @@ class LoginController {
   }
 
   async register(req, res) {
+
+    console.log(req.body);
+
     let conn;
 
     try {
@@ -209,7 +212,7 @@ class LoginController {
       await workerDB.commitTransaction(conn);
 
       const response = {
-        public_id: uuidBytes.toString("hex"),
+        userId: uuidBytes.toString("hex"),
         name: SanitizeData.sanitizeName(name),
         email: email,
         cpf: SanitizeData.formatCPF(cpf),

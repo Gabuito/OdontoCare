@@ -1,0 +1,462 @@
+<main class="container mx-auto p-8 pt-24 lg:max-w-4xl">
+  <section class="bg-white p-8 rounded-lg shadow transform transition-all duration-300 hover:shadow-lg">
+      <h1 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
+          <i class="bi bi-person-plus-fill text-blue-500 mr-3"></i> Cadastro de Cliente
+      </h1>
+      
+      <form id="cliente-form" action="/clientes/cadastrar" method="POST" enctype="multipart/form-data" class="space-y-8">
+          <!-- Foto do Cliente -->
+          <div class="mb-6">
+              <label for="foto" class="block text-gray-700 font-medium mb-2">Adicionar Foto</label>
+              <input type="file" id="foto" name="foto" accept="image/*" 
+              class="block w-full text-sm text-gray-500
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full file:border-0
+              file:text-sm file:font-semibold
+              file:bg-blue-50 file:text-blue-700
+              hover:file:bg-blue-100"
+                     onchange="previewImage(event)">
+                     <p class="text-gray-500 text-sm italic">- Deve estar no formato PNG, JPEG ou JPG. Deve ter tamanho maximo de 10MB</p>
+              <img id="preview" class="justify-self-center mt-4 w-32 h-32 object-cover rounded shadow" src="#" alt="Preview" style="display:none;">
+          </div>
+
+          <!-- Formulário em duas colunas -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Nome Completo -->
+              <div>
+                  <label for="nome" class="block text-gray-700 font-medium mb-2">Nome Completo</label>
+                  <input type="text" id="nome" name="nome" placeholder="Nome do Cliente" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              </div>
+              
+              <!-- E-mail -->
+              <div>
+                  <label for="email" class="block text-gray-700 font-medium mb-2">E-mail</label>
+                  <input type="email" id="email" name="email" placeholder="exemplo@dominio.com" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              </div>
+              
+              <!-- Telefone -->
+              <div>
+                  <label for="telefone" class="block text-gray-700 font-medium mb-2">Telefone</label>
+                  <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              </div>
+              
+              <!-- CPF -->
+              <div>
+                  <label for="cpf" class="block text-gray-700 font-medium mb-2">CPF</label>
+                  <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              </div>
+              
+              <!-- Data de Nascimento -->
+              <div>
+                  <label for="nascimento" class="block text-gray-700 font-medium mb-2">Data de Nascimento</label>
+                  <input type="date" id="nascimento" name="nascimento" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+              </div>
+              
+              <!-- Plano -->
+              <div>
+                  <label for="plano" class="block text-gray-700 font-medium mb-2">Plano</label>
+                  <select id="plano" name="plano" 
+                          class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                      <option value="">Selecione o Plano</option>
+                      <option value="ONDEMAND">OnDemand</option>
+                      <option value="INDIVIDUAL">Individual</option>
+                      <option value="DUO">Duo</option>
+                      <option value="FAMILY">Family</option>
+                      <option value="CORPORATE">Corporate</option>
+                  </select>
+              </div>
+              
+              <!-- Endereço - Rua -->
+              <div>
+                  <label for="rua" class="block text-gray-700 font-medium mb-2">Rua</label>
+                  <input type="text" id="rua" name="rua" placeholder="Rua" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+
+              <!-- Número -->
+              <div>
+                  <label for="numero" class="block text-gray-700 font-medium mb-2">Número</label>
+                  <input type="text" id="numero" name="numero" placeholder="Número" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              
+              <!-- Cidade -->
+              <div>
+                  <label for="cidade" class="block text-gray-700 font-medium mb-2">Cidade</label>
+                  <input type="text" id="cidade" name="cidade" placeholder="Cidade" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              
+              <!-- Estado -->
+              <div>
+                  <label for="estado" class="block text-gray-700 font-medium mb-2">Estado</label>
+                  <select id="estado" name="estado" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option value="">Selecione o Estado</option>
+                      <option value="AC">Acre</option>
+                      <option value="AL">Alagoas</option>
+                      <option value="AP">Amapá</option>
+                      <option value="AM">Amazonas</option>
+                      <option value="BA">Bahia</option>
+                      <option value="CE">Ceará</option>
+                      <option value="DF">Distrito Federal</option>
+                      <option value="ES">Espírito Santo</option>
+                      <option value="GO">Goiás</option>
+                      <option value="MA">Maranhão</option>
+                      <option value="MT">Mato Grosso</option>
+                      <option value="MS">Mato Grosso do Sul</option>
+                      <option value="MG">Minas Gerais</option>
+                      <option value="PA">Pará</option>
+                      <option value="PB">Paraíba</option>
+                      <option value="PR">Paraná</option>
+                      <option value="PE">Pernambuco</option>
+                      <option value="PI">Piauí</option>
+                      <option value="RJ">Rio de Janeiro</option>
+                      <option value="RN">Rio Grande do Norte</option>
+                      <option value="RS">Rio Grande do Sul</option>
+                      <option value="RO">Rondônia</option>
+                      <option value="RR">Roraima</option>
+                      <option value="SC">Santa Catarina</option>
+                      <option value="SP">São Paulo</option>
+                      <option value="SE">Sergipe</option>
+                      <option value="TO">Tocantins</option>
+                  </select>
+              </div>
+              
+              <!-- CEP -->
+              <div>
+                  <label for="cep" class="block text-gray-700 font-medium mb-2">CEP</label>
+                  <input type="text" id="cep" name="cep" placeholder="00000-000" 
+                         class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+
+             <!-- Senha -->
+              <div>
+                <label for="password" class="block text-gray-700 font-medium mb-2">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Senha" 
+                       class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                       <p class="text-gray-500 text-sm italic">- Deve conter no minimo 8 caracteres sendo um maiusculo e um especial</p>
+              </div>
+
+          </div>
+
+          <div class="flex justify-end items-center mt-8 gap-4">
+            <a href="/" class="bg-gray-500 text-white p-3 rounded hover:bg-gray-600 transition-all duration-300 flex items-center">
+              <i class="bi bi-arrow-left-circle mr-2"></i>Voltar
+          </a>
+              <button id="confirm" type="button" class="bg-green-500 text-white p-3 rounded hover:bg-green-600 transition-all duration-300 flex items-center px-6">
+                  <i class="bi bi-check-circle-fill mr-2"></i>Cadastrar
+              </button>
+          </div>
+      </form>
+  </section>
+<!-- Modal para mensagens -->
+<div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden z-50">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-80 max-w-full">
+      <h2 id="modal-title" class="text-xl font-bold text-gray-800 mb-4">Aviso</h2>
+      <p id="modal-message" class="text-gray-600 mb-6"></p>
+      <button id="modal-close" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-all">
+          Fechar
+      </button>
+  </div>
+</div>
+
+<!-- Modal de Loading / Sucesso / Erro -->
+<div id="status-modal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-70 hidden z-50 transition-opacity duration-300">
+  <div id="modal-content" class="flex flex-col items-center bg-none">
+      <!-- Ícone de carregamento -->
+      <div id="loading-icon" class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+      <!-- Mensagem do modal -->
+      <p id="modal-message-fetch" class="text-white mt-4 text-lg font-semibold">Carregando...</p>
+  </div>
+</div>
+
+
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // DOM Elements
+        const elements = {
+          // Modal de Status (Loading/Sucesso/Erro de fetch)
+          statusModal: document.getElementById("status-modal"),
+          statusModalContent: document.getElementById("modal-content"),
+          loadingIcon: document.getElementById("loading-icon"),
+          statusMessage: document.getElementById("modal-message-fetch"),
+          
+          // Modal de Validação
+          validationModal: document.getElementById("modal"),
+          validationTitle: document.getElementById("modal-title"),
+          validationMessage: document.getElementById("modal-message"),
+          form: {
+            nome: document.getElementById("nome"),
+            email: document.getElementById("email"),
+            telefone: document.getElementById("telefone"),
+            cpf: document.getElementById("cpf"),
+            nascimento: document.getElementById("nascimento"),
+            plano: document.getElementById("plano"),
+            rua: document.getElementById("rua"),
+            numero: document.getElementById("numero"),
+            cidade: document.getElementById("cidade"),
+            estado: document.getElementById("estado"),
+            cep: document.getElementById("cep"),
+            foto: document.getElementById("foto"),
+            preview: document.getElementById("preview"),
+            password: document.getElementById("password")
+          }
+        };
+      
+        // Validation patterns
+        const patterns = {
+          email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          telefone: /^\(\d{2}\) \d{4,5}-\d{4}$/,
+          cpf: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+          cep: /^\d{5}-\d{3}$/
+        };
+      
+        // Modal handling functions
+        const modal = {
+          // Modal de Status (Loading/Sucesso/Erro de fetch)
+          showStatus: function(message, type = 'loading') {
+            elements.statusModal.classList.remove("hidden");
+            elements.loadingIcon.classList.remove("hidden");
+            
+            // Reset classes do ícone
+            elements.loadingIcon.className = '';
+            elements.loadingIcon.classList.add("h-16", "w-16", "rounded-full");
+            
+            // Configura o ícone e estilos baseado no tipo
+            switch(type) {
+              case 'success':
+                elements.loadingIcon.classList.add("bi", "bi-check-circle-fill", "text-green-500", "text-6xl");
+                elements.statusMessage.classList.add("text-green-500");
+                break;
+              case 'error':
+                elements.loadingIcon.classList.add("bi", "bi-x-circle-fill", "text-red-500", "text-6xl");
+                elements.statusMessage.classList.add("text-red-500");
+                break;
+              case 'loading':
+              default:
+                elements.loadingIcon.classList.add("animate-spin", "border-t-4", "border-b-4", "border-blue-500");
+                elements.statusMessage.classList.add("text-white");
+                break;
+            }
+            
+            // Atualiza a mensagem
+            if (elements.statusMessage) {
+              elements.statusMessage.textContent = message;
+              elements.statusMessage.classList.add("mt-4", "text-lg", "font-semibold");
+            }
+          },
+          
+          hideStatus: function() {
+            setTimeout(() => {
+              elements.statusModal.classList.add("hidden");
+              // Reset das classes de cor da mensagem
+              if (elements.statusMessage) {
+                elements.statusMessage.classList.remove("text-green-500", "text-red-500", "text-white");
+              }
+            }, 2000);
+          },
+          
+          // Modal de Validação
+          showValidation: function(message, title = 'Aviso') {
+            elements.validationModal.classList.remove("hidden");
+            
+            if (elements.validationTitle) {
+              elements.validationTitle.textContent = title;
+            }
+            
+            if (elements.validationMessage) {
+              elements.validationMessage.textContent = message;
+            }
+          },
+          
+          hideValidation: function() {
+            elements.validationModal.classList.add("hidden");
+          }
+        };
+      
+        // Form validation functions
+        const validation = {
+          markInvalid: function(element, message) {
+            element.classList.add("border-red-500");
+            modal.showValidation(message);
+            element.focus();
+            return false;
+          },
+          
+          validateField: function(field, value, pattern, message) {
+            if (!pattern.test(value)) {
+              return this.markInvalid(field, message);
+            }
+            return true;
+          },
+      
+          validateDate: function(date) {
+            const inputDate = new Date(date);
+            const today = new Date();
+            const minAge = 16;
+            
+            if (inputDate >= today) {
+              return this.markInvalid(elements.form.nascimento, "Data de nascimento deve ser anterior à data atual.");
+            }
+      
+            const age = today.getFullYear() - inputDate.getFullYear() - 
+              (today.getMonth() < inputDate.getMonth() || 
+              (today.getMonth() === inputDate.getMonth() && today.getDate() < inputDate.getDate()));
+      
+            if (age < minAge) {
+              return this.markInvalid(elements.form.nascimento, "O cliente deve ter no mínimo 16 anos.");
+            }
+            
+            return true;
+          },
+      
+          validateForm: function() {
+            const f = elements.form;
+            let isValid = true;
+      
+            // Required field validations
+            ['nome', 'rua', 'numero', 'cidade', 'estado', 'plano'].forEach(field => {
+              if (!f[field].value.trim()) {
+                isValid = this.markInvalid(f[field], `Campo ${field.charAt(0).toUpperCase() + field.slice(1)} é obrigatório.`);
+              }
+            });
+      
+            // Pattern validations
+            if (isValid) {
+              isValid = this.validateField(f.email, f.email.value, patterns.email, "Por favor, insira um E-mail válido.") &&
+                       this.validateField(f.telefone, f.telefone.value, patterns.telefone, "Telefone inválido: (XX) XXXXX-XXXX.") &&
+                       this.validateField(f.cpf, f.cpf.value, patterns.cpf, "CPF inválido: 000.000.000-00.") &&
+                       this.validateField(f.cep, f.cep.value, patterns.cep, "CEP inválido: 00000-000.");
+            }
+      
+            // Date validation
+            if (isValid && f.nascimento.value) {
+              isValid = this.validateDate(f.nascimento.value);
+            }
+      
+            return isValid;
+          }
+        };
+      
+        // API interaction
+        async function submitForm() {
+          try {
+            modal.showStatus("Carregando...", "loading");
+
+            const formData = {
+              name: elements.form.nome.value,
+              email: elements.form.email.value,
+              password: elements.form.password.value,
+              cpf: elements.form.cpf.value,
+              birthDate: elements.form.nascimento.value,
+              plan: elements.form.plano.value,
+              phone: elements.form.telefone.value,
+              price: 0.00,
+              address: {
+                address: elements.form.rua.value + "," + elements.form.numero.value,
+                city: elements.form.cidade.value,
+                state: elements.form.estado.value,
+                zipCode: elements.form.cep.value,
+                country: 'BR' 
+              }
+            };
+
+            const response = await fetch('../../api/v1/users/create', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+            });
+      
+            const data = await response.json();
+            console.log(data);
+      
+            if (!data.success) {
+              throw new Error("Erro ao cadastrar cliente.");
+            }
+
+            if (elements.form.foto.files.length > 0) {
+              const imageFormData = new FormData();
+              imageFormData.append('file', elements.form.foto.files[0]);
+
+              const imageResponse = await fetch(`../../api/v2/client/image/${data.data.userId}`, {
+                method: 'POST',
+                body: imageFormData
+              });
+
+              const imageData = await imageResponse.json();
+              console.log(imageData);
+
+              if (!imageData.success) {
+                throw new Error("Erro ao enviar a imagem.");
+              }
+            }
+
+            modal.showStatus("Cadastro realizado com sucesso!", "success");
+            setTimeout(() => {
+              window.location.href = '../../dashboard';
+            }, 2000);
+          } catch (error) {
+            console.error('Error:', error);
+            modal.showStatus("Ops, ocorreu um erro! Tente novamente.", "error");
+          } finally {
+            modal.hideStatus();
+            
+          }
+        }
+      
+        // File handling
+        function handleFileUpload(event) {
+          const file = event.target.files[0];
+          if (!file) return;
+      
+          const maxSize = 10 * 1024 * 1024; // 10MB
+          const validFormats = ["image/jpeg", "image/png", "image/jpg"];
+      
+          if (!validFormats.includes(file.type)) {
+            modal.showValidation("Formato inválido. Use PNG, JPEG ou JPG.");
+            event.target.value = "";
+            return;
+          }
+      
+          if (file.size > maxSize) {
+            modal.showValidation("O arquivo é muito grande. Tamanho máximo: 10MB.");
+            event.target.value = "";
+            return;
+          }
+      
+          // Preview image
+          const reader = new FileReader();
+          reader.onload = () => {
+            elements.form.preview.src = reader.result;
+            elements.form.preview.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        }
+      
+        // Event Listeners
+        document.getElementById("modal-close").addEventListener("click", () => 
+          modal.hideValidation());
+      
+        document.getElementById("confirm").addEventListener("click", (event) => {
+          event.preventDefault();
+          if (validation.validateForm()) {
+            submitForm();
+          }
+        });
+      
+        elements.form.nascimento.addEventListener("change", (event) => 
+          validation.validateDate(event.target.value));
+      
+        elements.form.foto.addEventListener("change", handleFileUpload);
+      });
+</script>

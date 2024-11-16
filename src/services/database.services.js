@@ -49,6 +49,11 @@ class Worker {
     const sql = `DELETE FROM ${table} WHERE ${pkey} = ?`;
     return await this.#database.updateQuery(sql, [data], conn);
   }
+
+  async getLatestRow(table) {
+    const sql = `SELECT * FROM ${table} ORDER BY id DESC LIMIT 1`;
+    return await this.#database.viewQuery(sql, []);
+  }
 }
 
 export default new Worker();
